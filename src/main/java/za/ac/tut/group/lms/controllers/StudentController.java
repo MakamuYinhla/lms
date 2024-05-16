@@ -25,7 +25,7 @@ public class StudentController {
 
     @GetMapping("/signup")
     public String showSignUpForm(){
-        System.out.println("Sign up was touched");
+        System.out.println("Sign up was clicked");
 
         
         return "signup_student.html";
