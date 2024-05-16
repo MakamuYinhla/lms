@@ -11,6 +11,26 @@ public class LMSController {
         return "index.html";
     }
 
+    @GetMapping("/signup")
+    public String signup(){
+        return "SignUp.html";
+    }
+
+    @GetMapping("/contact")
+    public String contact(){
+        return "contact.html";
+    }
+
+    @GetMapping("/blog")
+    public String blog(){
+        return "blog.html";
+    }
+
+    @GetMapping("/courses")
+    public String courses(){
+        return "courses.html";
+    }
+
 
     
 
