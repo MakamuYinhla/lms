@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Home page</title>
 	<meta charset="UTF-8">
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
-					<a href="/signup" class="site-btn header-btn">Login</a>
+					<a href="/student/signup" class="site-btn header-btn">Login</a>
 					<nav class="main-menu">
 						<ul>
 							<li><a href="#">Home</a></li>
@@ -71,9 +71,9 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
-					<form class="intro-newslatter" th:action="@{/student/signup}">
-						<input type="text" placeholder="Name">
-						<input type="text" class="last-s" placeholder="E-mail">
+					<form class="intro-newslatter" th:action="@{/student/signup}" method="post">
+						<input name="name" type="text" placeholder="Name">
+						<input name="email" class="last-s" placeholder="E-mail" required>
 						<button class="site-btn" type="submit">Sign Up Now</button>
 					</form>
 				</div>
