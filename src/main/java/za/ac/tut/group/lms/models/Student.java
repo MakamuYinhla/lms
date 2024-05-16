@@ -13,7 +13,7 @@ public class Student {
     private String major;
 
     public Student() {
-        super();
+        
     }
 
     public Student(String password, String firstName, String lastName, String email, long studentID, String major) {
