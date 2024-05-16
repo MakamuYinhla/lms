@@ -13,7 +13,7 @@ public class LMSController {
 
     @GetMapping("/signup")
     public String signup(){
-        return "SignUp.html";
+        return "signup_student.html";
     }
 
     @GetMapping("/contact")
