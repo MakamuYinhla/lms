@@ -6,18 +6,17 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "students")
-public class Student extends User{
+public class Student {
     @Column(unique = true, length = 9)
     private long studentID;
     @Column
     private String major;
 
-    public Student(){
+    public Student() {
         super();
     }
 
-    public Student(String password, String firstName, String lastName, String email, long studentID, String major){
-        super(password, firstName, lastName, email, "Student");
+    public Student(String password, String firstName, String lastName, String email, long studentID, String major) {
         this.studentID = studentID;
         this.major = major;
     }
