@@ -12,7 +12,7 @@ public class Video {
     @Id
     @GeneratedValue
     private Long videoID;
-    @OneToMany(cascade = CascadeType.ALL)
+    // @OneToMany(cascade = CascadeType.ALL)
     @Column
     private Long lessonID;
     @Column

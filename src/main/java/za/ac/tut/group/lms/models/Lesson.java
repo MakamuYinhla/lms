@@ -12,7 +12,7 @@ public class Lesson {
     private Long lessonID;
     @Column
     private String lessonName;
-    @OneToMany(cascade = CascadeType.ALL)
+    // @OneToMany(cascade = CascadeType.ALL)
     @Column
     private String moduleName;
     @Column

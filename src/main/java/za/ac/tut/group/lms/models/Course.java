@@ -10,7 +10,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
-
 @Entity
 @Table(name = "Course")
 public class Course {
@@ -24,7 +23,7 @@ public class Course {
     @Column
     private Long lectureID;
     @Column
-    @Temporal(TemporalType.TIMESTAMP)
+    // @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
 
     @Column
