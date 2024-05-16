@@ -81,4 +81,13 @@ public class Lecturer {
         this.lectureID = lectureID;
     }
 
+    @Override
+    public String toString() {
+        return "Lecturer [UserID=" + UserID + ", password=" + password + ", firstName=" + firstName + ", lastName="
+                + lastName + ", email=" + email + ", lectureID=" + lectureID + ", getUserID()=" + getUserID()
+                + ", getPassword()=" + getPassword() + ", getFirstName()=" + getFirstName() + ", getLastName()="
+                + getLastName() + ", getEmail()=" + getEmail() + ", getLectureID()=" + getLectureID() + ", getClass()="
+                + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+    }
+
 }
