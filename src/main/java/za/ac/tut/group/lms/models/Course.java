@@ -3,11 +3,16 @@ package za.ac.tut.group.lms.models;
 import java.util.Date;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
+
+@Entity
+@Table(name = "Course")
 public class Course {
     @Id
     @GeneratedValue
