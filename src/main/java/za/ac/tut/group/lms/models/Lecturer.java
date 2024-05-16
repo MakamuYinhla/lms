@@ -23,6 +23,10 @@ public class Lecturer {
     @Column(unique = true, length = 9)
     private long lectureID;
 
+    public Lecturer() {
+
+    }
+
     public Lecturer(long userID, String password, String firstName, String lastName, String email, long lectureID) {
         UserID = userID;
         this.password = password;
