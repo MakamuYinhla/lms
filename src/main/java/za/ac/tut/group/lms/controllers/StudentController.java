@@ -15,7 +15,6 @@ import za.ac.tut.group.lms.services.StudentService;
 @Controller
 @RequestMapping(path = "/student")
 public class StudentController {
-    // Similar to @EJB
     @Autowired
     private final StudentService studentService;
 

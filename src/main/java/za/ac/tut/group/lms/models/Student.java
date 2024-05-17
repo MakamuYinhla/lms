@@ -21,7 +21,7 @@ public class Student {
     @Column
     private String email;
     @Column(unique = true, length = 9)
-    private long studentID;
+    private Integer studentID;
     @Column
     private String major;
 
@@ -29,7 +29,7 @@ public class Student {
 
     }
 
-    public Student(String password, String firstName, String lastName, String email, long studentID, String major) {
+    public Student(String password, String firstName, String lastName, String email, Integer studentID, String major) {
         this.studentID = studentID;
         this.major = major;
     }
@@ -74,11 +74,11 @@ public class Student {
         this.email = email;
     }
 
-    public long getStudentID() {
+    public Integer getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(long studentID) {
+    public void setStudentID(Integer studentID) {
         this.studentID = studentID;
     }
 
