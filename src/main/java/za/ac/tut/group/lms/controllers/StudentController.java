@@ -2,9 +2,6 @@ package za.ac.tut.group.lms.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,8 +22,8 @@ public class StudentController {
 
 
     @PostMapping("/addstudent")
-    public void addNewStudent(Student student, BindingResult result, Model model){
-        studentService.addNewStudent(student);
+    public void addNewStudent(){
+        Student student = new Student();
     }    
 
 }
