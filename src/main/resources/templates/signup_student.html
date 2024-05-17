@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -579,7 +579,12 @@
     </marquee>
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <form action="#" th:action="@{/student/addstudent}" method="post">
+        <form
+          action="#"
+          th:action="@{/student/addstudent}"
+          th:object="${student}"
+          method="post"
+        >
           <h1>Create Account</h1>
           <div class="social-container">
             <a
@@ -602,15 +607,41 @@
             >
           </div>
           <span>use your email for registration</span>
-          <input type="text" name="name" placeholder="Name" />
-          <input type="text" name="number" placeholder="Student/stuff Number" />
-          <input type="email" name="email" placeholder="Email" />
-          <input type="password" name="password" placeholder="Password" />
+          <input
+            type="text"
+            th:field="*{firstName} "
+            name="name"
+            placeholder="Name"
+          />
+
+          <input
+            type="text"
+            th:field="*{studentID}"
+            name="number"
+            placeholder="Student/stuff Number"
+          />
+          <input
+            type="email"
+            th:field="*{email}"
+            name="email"
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            th:field="*{password}"
+            name="password"
+            placeholder="Password"
+          />
           <button type="submit">Sign Up</button>
         </form>
       </div>
       <div class="form-container sign-in-container">
-        <form>
+        <form
+          action="#"
+          th:action="@{/signup}"
+          th:object="${student}"
+          method="post"
+        >
           <h1>Sign in</h1>
           <div class="social-container">
             <a
@@ -633,7 +664,12 @@
             >
           </div>
           <span>use your account</span>
-          <input type="email" placeholder="Email" />
+          <input
+            type="email"
+            th:field="*{email}"
+            name="email"
+            placeholder="Email"
+          />
           <input type="password" placeholder="Password" />
           <a href="#">Forgot your password?</a>
           <button type="submit">Sign In</button>

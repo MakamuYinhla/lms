@@ -29,6 +29,10 @@ public class Student {
 
     }
 
+    public Student(String password, Integer studentID) {
+
+    }
+
     public Student(String password, String firstName, String lastName, String email, Integer studentID, String major) {
         this.studentID = studentID;
         this.major = major;

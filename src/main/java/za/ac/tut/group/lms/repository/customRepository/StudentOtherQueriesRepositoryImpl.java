@@ -1,13 +1,16 @@
 package za.ac.tut.group.lms.repository.customRepository;
 import java.util.Objects;
 
+import org.springframework.stereotype.Repository;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import za.ac.tut.group.lms.models.Student;
 
-public class StudentOtherQueriesRepositoryImp implements StudentOtherQueriesRepository {
+@Repository
+public class StudentOtherQueriesRepositoryImpl implements StudentOtherQueriesRepository {
 
   @PersistenceContext
     private EntityManager entityManager;
@@ -19,8 +22,8 @@ public class StudentOtherQueriesRepositoryImp implements StudentOtherQueriesRepo
   @Override
   public boolean authorizeStudent(Student stu){
     TypedQuery<Student> sql = getEntityManager().createQuery("SELECT u FROM Student u WHERE u.studentID = :studentId AND u.password() = :stuPassword", Student.class);
-    sql.setParameter(":studentId", stu.getStudentID());
-    sql.setParameter(":stuPassword", stu.getPassword());
+    sql.setParameter("studentId", stu.getStudentID());
+    sql.setParameter("stuPassword", stu.getPassword());
 
    
     

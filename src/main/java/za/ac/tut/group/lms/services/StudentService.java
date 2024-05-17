@@ -2,6 +2,7 @@ package za.ac.tut.group.lms.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import za.ac.tut.group.lms.models.Student;
 import za.ac.tut.group.lms.repository.StudentRepository;
 
@@ -17,5 +18,9 @@ public class StudentService {
 
     public void addNewStudent(Student student){
         studentRepository.save(student);
+    }
+
+    public void authorizeStudentAccess(Student student){
+        studentRepository.authorizeStudent(student);
     }
 }
