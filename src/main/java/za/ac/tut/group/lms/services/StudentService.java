@@ -20,7 +20,7 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-    public void authorizeStudentAccess(Student student){
-        studentRepository.authorizeStudent(student);
+    public boolean authorizeStudentAccess(Student student){
+        return studentRepository.authorizeStudent(student);
     }
 }
