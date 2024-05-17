@@ -2,30 +2,38 @@ package za.ac.tut.group.lms.models;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "lessons")
 public class Lesson {
     @Id
     @GeneratedValue
     private Long lessonID;
     @Column
     private String lessonName;
-    // @OneToMany(cascade = CascadeType.ALL)
+    //@OneToMany(cascade = CascadeType.ALL)
     @Column
     private String moduleName;
     @Column
     private String lessonDescription;
-    @Column
-    private Integer order;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "module_id")
+    private Module moduleId;
 
-    public Lesson(Long lessonID, String lessonName, String moduleName, String lessonDescription, Integer order) {
+
+    public Lesson(Long lessonID, String lessonName, String moduleName, String lessonDescription) {
         this.lessonID = lessonID;
         this.lessonName = lessonName;
         this.moduleName = moduleName;
         this.lessonDescription = lessonDescription;
-        this.order = order;
+
     }
 
     public Lesson() {
@@ -61,14 +69,6 @@ public class Lesson {
 
     public void setLessonDescription(String lessonDescription) {
         this.lessonDescription = lessonDescription;
-    }
-
-    public Integer getOrder() {
-        return order;
-    }
-
-    public void setOrder(Integer order) {
-        this.order = order;
     }
 
 }

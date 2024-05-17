@@ -3,18 +3,23 @@ package za.ac.tut.group.lms.models;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
 
 @Entity
+@Table(name = "videos")
 public class Video {
     @Id
     @GeneratedValue
     private Long videoID;
     // @OneToMany(cascade = CascadeType.ALL)
-    @Column
-    private Long lessonID;
+    //@Column
+    //private Long lessonID;
     @Column
     private String videoName;
     @Column
@@ -26,7 +31,11 @@ public class Video {
     @Column
     private String videoDescriotion;
 
-    public Video(Long videoID, Long lessonID, String videoName, String videoTitle, String videoUrl,
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "lesson_id")
+    private Lesson lessonID;
+
+    public Video(Long videoID, Lesson lessonID, String videoName, String videoTitle, String videoUrl,
             Double videoDuration, String videoDescriotion) {
         this.videoID = videoID;
         this.lessonID = lessonID;
@@ -48,11 +57,11 @@ public class Video {
         this.videoID = videoID;
     }
 
-    public Long getLessonID() {
+    public Lesson getLessonID() {
         return lessonID;
     }
 
-    public void setLessonID(Long lessonID) {
+    public void setLessonID(Lesson lessonID) {
         this.lessonID = lessonID;
     }
 

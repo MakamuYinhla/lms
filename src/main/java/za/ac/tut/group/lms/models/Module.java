@@ -1,69 +1,36 @@
 package za.ac.tut.group.lms.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
-public class Module {
+@Table(name = "modules")
+public class Module{
     @Id
     @GeneratedValue
-    private Long moduleID;
+    private Long moduleId;
+
     @Column
-    private String moduelName;
+    private String moduleName;
+
     @Column
     private String moduleDescription;
-    @Column
-    private Integer order;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id")
+    private Course courseID;
 
     public Module() {
+
     }
 
-    public Module(Long moduleID, String moduelName, String moduleDescription, Integer order) {
-        this.moduleID = moduleID;
-        this.moduelName = moduelName;
-        this.moduleDescription = moduleDescription;
-        this.order = order;
-    }
-
-    public Long getModuleID() {
-        return moduleID;
-    }
-
-    public void setModuleID(Long moduleID) {
-        this.moduleID = moduleID;
-    }
-
-    public String getModuelName() {
-        return moduelName;
-    }
-
-    public void setModuelName(String moduelName) {
-        this.moduelName = moduelName;
-    }
-
-    public String getModuleDescription() {
-        return moduleDescription;
-    }
-
-    public void setModuleDescription(String moduleDescription) {
-        this.moduleDescription = moduleDescription;
-    }
-
-    public Integer getOrder() {
-        return order;
-    }
-
-    public void setOrder(Integer order) {
-        this.order = order;
-    }
-
-    @Override
-    public String toString() {
-        return "Module [moduleID=" + moduleID + ", moduelName=" + moduelName + ", moduleDescription="
-                + moduleDescription
-                + ", order=" + order + "]";
-    }
-
+    
 }
