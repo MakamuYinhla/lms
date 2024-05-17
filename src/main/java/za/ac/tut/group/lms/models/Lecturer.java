@@ -21,19 +21,19 @@ public class Lecturer {
     @Column
     private String email;
     @Column(unique = true, length = 9)
-    private long lectureID;
+    private Integer lecturerID;
 
     public Lecturer() {
 
     }
 
-    public Lecturer(long userID, String password, String firstName, String lastName, String email, long lectureID) {
+    public Lecturer(Integer userID, String password, String firstName, String lastName, String email, Integer lecturerID) {
         UserID = userID;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.lectureID = lectureID;
+        this.lecturerID = lecturerID;
 
     }
 
@@ -77,18 +77,18 @@ public class Lecturer {
         this.email = email;
     }
 
-    public long getLectureID() {
-        return lectureID;
+    public Integer getLecturerID() {
+        return lecturerID;
     }
 
-    public void setLectureID(long lectureID) {
-        this.lectureID = lectureID;
+    public void setLecturerID(Integer lecturerID) {
+        this.lecturerID = lecturerID;
     }
 
     @Override
     public String toString() {
         return "Lecturer [UserID=" + UserID + ", password=" + password + ", firstName=" + firstName + ", lastName="
-                + lastName + ", email=" + email + ", lectureID=" + lectureID + "]";
+                + lastName + ", email=" + email + ", lecturerID=" + lecturerID + "]";
     }
 
 }

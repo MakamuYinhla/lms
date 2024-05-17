@@ -21,7 +21,7 @@ public class StudentOtherQueriesRepositoryImpl implements StudentOtherQueriesRep
 
   @Override
   public boolean authorizeStudent(Student stu){
-    TypedQuery<Student> sql = getEntityManager().createQuery("SELECT u FROM Student u WHERE u.studentID = :studentId AND u.password() = :stuPassword", Student.class);
+    TypedQuery<Student> sql = getEntityManager().createQuery("SELECT u FROM Student u WHERE u.studentID = :studentId AND u.password = :stuPassword", Student.class);
     sql.setParameter("studentId", stu.getStudentID());
     sql.setParameter("stuPassword", stu.getPassword());
 
