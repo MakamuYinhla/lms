@@ -11,7 +11,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "Course")
+@Table(name = "courses")
 public class Course {
     @Id
     @GeneratedValue

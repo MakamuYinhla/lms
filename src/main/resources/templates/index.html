@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-	<title>Home page</title>
+	<title>EduVerse</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="WebUni Education Template">
 	<meta name="keywords" content="webuni, education, creative, html">
@@ -34,20 +34,23 @@
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="container">
-			
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="site-logo">
-						
+						<img src="img/logo.png" alt="">
 					</div>
 					<div class="nav-switch">
 						<i class="fa fa-bars"></i>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
+<<<<<<< HEAD
 					<a href="/student/signup" class="site-btn header-btn">Login As Student</a> 
 					<br>
 					<a href="/lecturer/signup" class="site-btn header-btn">Login As Lecturer</a>
+=======
+					<a href="/signup" class="site-btn header-btn">Login</a>
+>>>>>>> 72b5342d0291a24ee6f90147bbada7b5741696e2
 					<nav class="main-menu">
 						<ul>
 							<li><a href="#">Home</a></li>
@@ -69,13 +72,13 @@
 		<div class="container">
 			<div class="hero-text text-white">
 				<h2>Get The Best Free Online Courses</h2>
-				
+				<p>EduVerse is a leading Learning Management System (LMS) dedicated to providing high-quality, accessible, and personalized learning experiences for students, educators, and institutions worldwide.</p>
 			</div>
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
-					<form class="intro-newslatter" th:action="@{/student/signup}">
-						<input name="name" type="text" placeholder="Name">
-						<input name="email" class="last-s" placeholder="E-mail" required>
+					<form class="intro-newslatter" th:action="@{/signup}">
+						<input type="text" placeholder="Name">
+						<input type="text" class="last-s" placeholder="E-mail">
 						<button class="site-btn" type="submit">Sign Up Now</button>
 					</form>
 				</div>
@@ -90,7 +93,7 @@
 		<div class="container">
 			<div class="section-title">
 				<h2>Our Course Categories</h2>
-				
+				<p>EduVerse is your gateway to mastering Information and Communication Technology (ICT) skills with our specialized modules. Explore the dynamic world of programming and development, where you can learn to code in various languages and build innovative software solutions. </p>
 			</div>
 			<div class="row">
 				<!-- categorie -->
@@ -98,9 +101,9 @@
 					<div class="categorie-item">
 						<div class="ci-thumb set-bg" data-setbg="img/categories/1.jpg"></div>
 						<div class="ci-text">
-							<h5>IT Development</h5>
-							
-							<span>120 Courses</span>
+							<h5>Information Technology </h5>
+							<p>Master IT with EduVerse.</p>
+							<span>10 Modules</span>
 						</div>
 					</div>
 				</div>
@@ -109,9 +112,9 @@
 					<div class="categorie-item">
 						<div class="ci-thumb set-bg" data-setbg="img/categories/2.jpg"></div>
 						<div class="ci-text">
-							<h5>Web Design</h5>
-							
-							<span>70 Courses</span>
+							<h5>Computer Science</h5>
+							<p>Excel in Computer Science with EduVerse.</p>
+							<span>7 Modules</span>
 						</div>
 					</div>
 				</div>
@@ -120,9 +123,9 @@
 					<div class="categorie-item">
 						<div class="ci-thumb set-bg" data-setbg="img/categories/3.jpg"></div>
 						<div class="ci-text">
-							<h5>Illustration & Drawing</h5>
-							
-							<span>55 Courses</span>
+							<h5>Informatics</h5>
+							<p>Advance in Informatics with EduVerse</p>
+							<span>5 Modules</span>
 						</div>
 					</div>
 				</div>
@@ -131,9 +134,9 @@
 					<div class="categorie-item">
 						<div class="ci-thumb set-bg" data-setbg="img/categories/4.jpg"></div>
 						<div class="ci-text">
-							<h5>Social Media</h5>
-							
-							<span>40 Courses</span>
+							<h5>Multimedia Computing</h5>
+							<p>Explore Multimedia Computing with EduVerse.</p>
+							<span>6 Modules</span>
 						</div>
 					</div>
 				</div>
@@ -142,9 +145,9 @@
 					<div class="categorie-item">
 						<div class="ci-thumb set-bg" data-setbg="img/categories/5.jpg"></div>
 						<div class="ci-text">
-							<h5>Photoshop</h5>
-							
-							<span>220 Courses</span>
+							<h5>Computer Systems Engineering</h5>
+							<p>Engineer Computer Systems with EduVerse</p>
+							<span>3 Modules</span>
 						</div>
 					</div>
 				</div>
@@ -153,9 +156,9 @@
 					<div class="categorie-item">
 						<div class="ci-thumb set-bg" data-setbg="img/categories/6.jpg"></div>
 						<div class="ci-text">
-							<h5>Cryptocurrencies</h5>
-							
-							<span>25 Courses</span>
+							<h5>Data Science</h5>
+							<p>Dive into Data Science with EduVerse.</p>
+							<span>2 Modules</span>
 						</div>
 					</div>
 				</div>
@@ -193,33 +196,33 @@
 		<div class="container">
 			<div class="section-title mb-0">
 				<h2>Featured Courses</h2>
-				
+				<p>Discover our handpicked selection of featured courses designed to accelerate your learning journey. From mastering programming languages to unlocking the secrets of data science, these courses offer comprehensive insights and practical skills to help you thrive in today's digital landscape.</p>
 			</div>
 		</div>
 		<div class="course-warp">
 			<ul class="course-filter controls">
 				<li class="control active" data-filter="all">All</li>
-				<li class="control" data-filter=".finance">Finance</li>
-				<li class="control" data-filter=".design">Design</li>
-				<li class="control" data-filter=".web">Web Development</li>
-				<li class="control" data-filter=".photo">Photography</li>
+				<li class="control" data-filter=".finance">Computer Science</li>
+				<li class="control" data-filter=".design">Informatics</li>
+				<li class="control" data-filter=".web">Information Technology</li>
+				<li class="control" data-filter=".photo">Computer Systems Engineering</li>
 			</ul>                                       
 			<div class="row course-items-area">
 				<!-- course -->
 				<div class="mix col-lg-3 col-md-4 col-sm-6 finance">
 					<div class="course-item">
 						<div class="course-thumb set-bg" data-setbg="img/courses/1.jpg">
-							<div class="price">Price: $15</div>
+							<div class="price">PPA115D</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">
-								<h5>Art & Crafts</h5>
-								
-								<div class="students">120 Students</div>
+								<h5>Principles Of Programming A</h5>
+								<p>Introduction To Programming</p>
+								<div class="students">15 Study Material</div>
 							</div>
 							<div class="course-author">
 								<div class="ca-pic set-bg" data-setbg="img/authors/1.jpg"></div>
-								<p>William Parker, <span>Developer</span></p>
+								<p>V Booi, <span>Lecturer</span></p>
 							</div>
 						</div>
 					</div>
@@ -228,17 +231,17 @@
 				<div class="mix col-lg-3 col-md-4 col-sm-6 design">
 					<div class="course-item">
 						<div class="course-thumb set-bg" data-setbg="img/courses/2.jpg">
-							<div class="price">Price: $15</div>
+							<div class="price">PPB115D</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">
-								<h5>IT Development</h5>
-							
-								<div class="students">120 Students</div>
+								<h5>Principles Of Programming B</h5>
+								<p>Introduction To Objects</p>
+								<div class="students">10 Study Material</div>
 							</div>
 							<div class="course-author">
 								<div class="ca-pic set-bg" data-setbg="img/authors/2.jpg"></div>
-								<p>William Parker, <span>Developer</span></p>
+								<p>V Memani, <span>Lecturer</span></p>
 							</div>
 						</div>
 					</div>
@@ -247,13 +250,13 @@
 				<div class="mix col-lg-3 col-md-4 col-sm-6 web">
 					<div class="course-item">
 						<div class="course-thumb set-bg" data-setbg="img/courses/3.jpg">
-							<div class="price">Price: $15</div>
+							<div class="price">PS1216D</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">
-								<h5>Graphic Design</h5>
-								
-								<div class="students">120 Students</div>
+								<h5>Computer Security</h5>
+								<p>Excel In Computer Security</p>
+								<div class="students">12 Study Material</div>
 							</div>
 							<div class="course-author">
 								<div class="ca-pic set-bg" data-setbg="img/authors/3.jpg"></div>
@@ -266,17 +269,17 @@
 				<div class="mix col-lg-3 col-md-4 col-sm-6 photo">
 					<div class="course-item">
 						<div class="course-thumb set-bg" data-setbg="img/courses/4.jpg">
-							<div class="price">Price: $15</div>
+							<div class="price">DE1F05D</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">
-								<h5>IT Development</h5>
-								
-								<div class="students">120 Students</div>
+								<h5>Digital Electronics</h5>
+								<p>Master Digital Electronics.</p>
+								<div class="students">12 Study Material</div>
 							</div>
 							<div class="course-author">
 								<div class="ca-pic set-bg" data-setbg="img/authors/4.jpg"></div>
-								<p>William Parker, <span>Developer</span></p>
+								<p>V Mabasa, <span>Lecturer</span></p>
 							</div>
 						</div>
 					</div>
@@ -285,17 +288,17 @@
 				<div class="mix col-lg-3 col-md-4 col-sm-6 finance">
 					<div class="course-item">
 						<div class="course-thumb set-bg" data-setbg="img/courses/5.jpg">
-							<div class="price">Price: $15</div>
+							<div class="price">MOB316D</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">
-								<h5>IT Development</h5>
-								
-								<div class="students">120 Students</div>
+								<h5>Mobile Computing</h5>
+								<p>Excel in Mobile Computing</p>
+								<div class="students">12 Study Material</div>
 							</div>
 							<div class="course-author">
 								<div class="ca-pic set-bg" data-setbg="img/authors/5.jpg"></div>
-								<p>William Parker, <span>Developer</span></p>
+								<p>F Hattingh, <span>Lecturer</span></p>
 							</div>
 						</div>
 					</div>
@@ -304,17 +307,17 @@
 				<div class="mix col-lg-3 col-md-4 col-sm-6 design">
 					<div class="course-item">
 						<div class="course-thumb set-bg" data-setbg="img/courses/6.jpg">
-							<div class="price">Price: $15</div>
+							<div class="price">BUA216D</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">
-								<h5>Socia Media</h5>
-								
-								<div class="students">120 Students</div>
+								<h5>Business Analysis</h5>
+								<p>Master Business Analysis</p>
+								<div class="students">7 Study Material</div>
 							</div>
 							<div class="course-author">
 								<div class="ca-pic set-bg" data-setbg="img/authors/6.jpg"></div>
-								<p>William Parker, <span>Developer</span></p>
+								<p>R Mabena, <span>Lecturer</span></p>
 							</div>
 						</div>
 					</div>
@@ -323,17 +326,17 @@
 				<div class="mix col-lg-3 col-md-4 col-sm-6 web">
 					<div class="course-item">
 						<div class="course-thumb set-bg" data-setbg="img/courses/7.jpg">
-							<div class="price">Price: $15</div>
+							<div class="price">CAT116D</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">
-								<h5>IT Development</h5>
-								
-								<div class="students">120 Students</div>
+								<h5>Computer Architecture</h5>
+								<p>Master Computer Architecture</p>
+								<div class="students">12 Study Material</div>
 							</div>
 							<div class="course-author">
 								<div class="ca-pic set-bg" data-setbg="img/authors/7.jpg"></div>
-								<p>William Parker, <span>Developer</span></p>
+								<p>P Ngwenya, <span>Lecturer</span></p>
 							</div>
 						</div>
 					</div>
@@ -342,17 +345,17 @@
 				<div class="mix col-lg-3 col-md-4 col-sm-6 photo">
 					<div class="course-item">
 						<div class="course-thumb set-bg" data-setbg="img/courses/8.jpg">
-							<div class="price">Price: $15</div>
+							<div class="price">NWSF05D</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">
-								<h5>HTML 5</h5>
-								
-								<div class="students">120 Students</div>
+								<h5>Network Systems</h5>
+								<p>Master Network Systems</p>
+								<div class="students">12 Students</div>
 							</div>
 							<div class="course-author">
 								<div class="ca-pic set-bg" data-setbg="img/authors/8.jpg"></div>
-								<p>William Parker, <span>Developer</span></p>
+								<p>P Smith, <span>Lecturer</span></p>
 							</div>
 						</div>
 					</div>
@@ -371,17 +374,17 @@
 				<div class="col-lg-6">
 					<div class="signup-warp">
 						<div class="section-title text-white text-left">
-							<h2>Sign up to became a teacher</h2>
-						
+							<h2>Sign up to became a Lecturer</h2>
+							<p>Are you passionate about sharing your expertise and shaping the next generation of learners? Join our team of dedicated educators at EduVerse.</p>
 						</div>
 						<!-- signup form -->
 						<form class="signup-form">
 							<input type="text" placeholder="Your Name">
 							<input type="text" placeholder="Your E-mail">
 							<input type="text" placeholder="Your Phone">
-							<label for="v-upload" class="file-up-btn">Upload Course</label>
+							<label for="v-upload" class="file-up-btn">Upload Picture</label>
 							<input type="file" id="v-upload">
-							<button class="site-btn">Search Couse</button>
+							<button class="site-btn">Submit</button>
 						</form>
 					</div>
 				</div>
@@ -396,7 +399,7 @@
 		<div class="container">
 			<div class="section-title mb-0 pb-2">
 				<h2>Join Our Community Now!</h2>
-			
+				<p>Become part of a vibrant community of learners and educators at EduVerse. Connect with like-minded individuals, share insights, and collaborate on projects that fuel your passion for learning. </p>
 			</div>
 			<div class="text-center pt-5">
 				<a href="#" class="site-btn">Register Now</a>
@@ -414,39 +417,39 @@
 					<div class="widget-item">
 						<h4>Contact Info</h4>
 						<ul class="contact-list">
-							<li>1481 Creekside Lane <br>Cape town, CA 931</li>
-							<li>+27729679287</li>
-							<li>yourmail@gmail.com</li>
+							<li>13 Pretoria, Struben Str <br>Office 15</li>
+							<li>012 382 5634</li>
+							<li>info@eduverse.co.za</li>
 						</ul>
 					</div>
 					<div class="widget-item">
-						<h4>Engeneering</h4>
+						<h4>Multimedia Computing</h4>
 						<ul>
-							<li><a href="">Applied Studies</a></li>
-							<li><a href="">Computer Engeneering</a></li>
-							<li><a href="">Software Engeneering</a></li>
-							<li><a href="">Informational Engeneering</a></li>
-							<li><a href="">System Engeneering</a></li>
+							<li><a href="">Life Skills</a></li>
+							<li><a href="">Communication For Academic Purposes</a></li>
+							<li><a href="">Multimedia Technology</a></li>
+							<li><a href="">3D Modelling</a></li>
+							<li><a href="">3D Animation</a></li>
 						</ul>
 					</div>
 					<div class="widget-item">
-						<h4>Graphic Design</h4>
+						<h4>Information Technology</h4>
 						<ul>
-							<li><a href="">Applied Studies</a></li>
-							<li><a href="">Computer Engeneering</a></li>
-							<li><a href="">Software Engeneering</a></li>
-							<li><a href="">Informational Engeneering</a></li>
-							<li><a href="">System Engeneering</a></li>
+							<li><a href="">Computing Fundamentals A</a></li>
+							<li><a href="">Discrete Structures</a></li>
+							<li><a href="">Database Principles</a></li>
+							<li><a href="">Information Security</a></li>
+							<li><a href="">Operating Systems</a></li>
 						</ul>
 					</div>
 					<div class="widget-item">
-						<h4>Development</h4>
+						<h4>Computer Science</h4>
 						<ul>
-							<li><a href="">Applied Studies</a></li>
-							<li><a href="">Computer Engeneering</a></li>
-							<li><a href="">Software Engeneering</a></li>
-							<li><a href="">Informational Engeneering</a></li>
-							<li><a href="">System Engeneering</a></li>
+							<li><a href="">Principles Of Programming A</a></li>
+							<li><a href="">Principles Of Programming B</a></li>
+							<li><a href="">Object Oriented Programming</a></li>
+							<li><a href="">Web Computing</a></li>
+							<li><a href="">Computational Mathematics</a></li>
 						</ul>
 					</div>
 					<div class="widget-item">
@@ -467,7 +470,7 @@
 					<li><a href="#">Register</a></li>
 					<li><a href="#">Privacy</a></li>
 				</ul>
-				<div class="copyright"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></div>
+				<div class="copyright"><a target="_blank" href="https://www.templateshub.net">EduVerse</a></div>
 			</div>
 		</div>
 	</footer> 
