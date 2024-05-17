@@ -19,6 +19,9 @@
             height: 100vh;
             margin: 0;
             background-image: url("img/signup-bg.jpg");
+            background-size: contain;
+            /*background-repeat: no-repeat; */
+            background-position: center;
         }
 
         .container {
@@ -162,12 +165,20 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            padding: 0 50px;
+            padding: 0 10px;
             height: 100%;
             text-align: center;
         }
 
         .form-container input {
+            background-color: #eee;
+            border: none;
+            padding: 12px 15px;
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        .form-container select {
             background-color: #eee;
             border: none;
             padding: 12px 15px;
@@ -264,15 +275,14 @@
         <div class="form-container sign-up-container">
             <form action="#">
                 <h1 style="font-size: 30px;"><b>Create Account</b> </h1>
-                <div class="social-container">
-                    <a href="/" class="social" style="background-color: red;"><i></i>H</a>
-                    <a href="/contact" class="social" style="background-color: red;"><i></i>C</a>
-                    <a href="/courses" class="social" style="background-color: red;"><i></i>C</a>
-                </div>
                 <span>use your email for registration</span>
                 <input type="text" name="name" placeholder="Name" />
                 <input type="text" name="number" placeholder="Student/stuff Number" />
                 <input type="email" name="email" placeholder="Email" />
+                <select name="role" id="role">
+                    <option value="Student">Student</option>
+                    <option value="Lecturer">Lecturer</option>
+                </select>
                 <input type="password" name="password" placeholder="Password" />
                 <button>Sign Up</button>
             </form>
@@ -280,11 +290,6 @@
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Sign in</h1>
-                <div class="social-container">
-                    <a href="index.html" class="social" style="background-color: red;"><i></i>H</a>
-                    <a href="#" class="social" style="background-color: red;"><i></i>A</a>
-                    <a href="blog.html" class="social" style="background-color: red;"><i></i>B</a>
-                </div>
                 <span>use your account</span>
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />

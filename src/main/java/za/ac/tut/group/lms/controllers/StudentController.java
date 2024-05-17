@@ -23,13 +23,6 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/signup")
-    public String showSignUpForm(){
-        System.out.println("Sign up was touched");
-
-        
-        return "signup_student.html";
-    }
 
     @PostMapping("/addstudent")
     public void addNewStudent(Student student, BindingResult result, Model model){
