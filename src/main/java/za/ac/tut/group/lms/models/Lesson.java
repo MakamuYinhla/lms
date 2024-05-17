@@ -25,7 +25,7 @@ public class Lesson {
     private String lessonDescription;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "module_id")
-    private Module moduleId;
+    private CourseModule moduleId;
 
 
     public Lesson(Long lessonID, String lessonName, String moduleName, String lessonDescription) {
