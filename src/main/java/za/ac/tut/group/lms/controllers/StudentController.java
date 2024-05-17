@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
-import za.ac.tut.group.lms.models.Student;
-import za.ac.tut.group.lms.services.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import za.ac.tut.group.lms.models.Student;
+import za.ac.tut.group.lms.services.StudentService;
 
 
 @Controller
@@ -25,20 +25,15 @@ public class StudentController {
 
     @GetMapping("/signup")
     public String showSignUpForm(){
-        System.out.println("Sign up was clicked");
+        System.out.println("Sign up was touched");
 
         
         return "signup_student.html";
     }
 
     @PostMapping("/addstudent")
-    public String addNewStudent(Student student, BindingResult result, Model model){
-        
-        
-        
-        
+    public void addNewStudent(Student student, BindingResult result, Model model){
         studentService.addNewStudent(student);
-        return "redirect:/courses";
     }    
 
 }
