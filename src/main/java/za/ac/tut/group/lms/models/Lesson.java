@@ -18,7 +18,7 @@ public class Lesson {
     private Long lessonID;
     @Column
     private String lessonName;
-    //@OneToMany(cascade = CascadeType.ALL)
+    // @OneToMany(cascade = CascadeType.ALL)
     @Column
     private String moduleName;
     @Column
@@ -27,6 +27,9 @@ public class Lesson {
     @JoinColumn(name = "module_id")
     private CourseModule moduleId;
 
+    public CourseModule getModuleId() {
+        return moduleId;
+    }
 
     public Lesson(Long lessonID, String lessonName, String moduleName, String lessonDescription) {
         this.lessonID = lessonID;

@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "modules")
-public class CourseModule{
+public class CourseModule {
     @Id
     @GeneratedValue
     private Long moduleId;
@@ -70,7 +70,4 @@ public class CourseModule{
         this.courseID = courseID;
     }
 
-    
-
-    
 }

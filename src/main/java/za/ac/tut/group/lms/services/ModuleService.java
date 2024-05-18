@@ -1,10 +1,9 @@
 package za.ac.tut.group.lms.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import za.ac.tut.group.lms.models.CourseModule;
 import za.ac.tut.group.lms.repository.ModuleRepository;
 
@@ -24,4 +23,19 @@ public class ModuleService {
     public List<CourseModule> findAllModules() {
         return modulRepository.findAll();
     }
+
+    public Long getModuleId(String name) {
+        List<CourseModule> modules = modulRepository.findAll();
+
+        System.out.println("List of modules: " + modules.size() + " " + name);
+        for (CourseModule courseModule : modules) {
+            System.out.println("Module names: " + courseModule.getModuleName());
+            if (courseModule.getModuleName().equals(name)) {
+                System.out.println(courseModule.getModuleName());
+                return courseModule.getModuleId();
+            }
+        }
+        return -1l;
+    }
+
 }

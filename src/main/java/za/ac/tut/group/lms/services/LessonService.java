@@ -24,4 +24,16 @@ public class LessonService {
     public List<Lesson> findAllLessons() {
         return lessonRepository.findAll();
     }
+
+    public List<Lesson> findAllByModuleId(Long id) {
+        List<Lesson> lessons = lessonRepository.findAll();
+        for (Lesson lesson : lessons) {
+            if (lesson.getModuleId().getModuleId() != id) {
+                lessons.remove(lesson);
+            }
+        }
+
+        return lessons;
+    }
+
 }

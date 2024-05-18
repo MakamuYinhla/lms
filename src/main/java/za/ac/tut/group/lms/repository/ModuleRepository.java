@@ -5,8 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import za.ac.tut.group.lms.models.CourseModule;
 
-
 @Repository
 public interface ModuleRepository extends JpaRepository<CourseModule, Long> {
-    
+
 }
