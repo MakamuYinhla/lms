@@ -10,7 +10,7 @@ import za.ac.tut.group.lms.services.VideoService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/videos")
+@RequestMapping(path = "/Video")
 public class VideoController {
 
     @Autowired
