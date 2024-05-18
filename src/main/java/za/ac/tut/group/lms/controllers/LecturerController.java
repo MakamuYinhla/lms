@@ -1,5 +1,7 @@
 package za.ac.tut.group.lms.controllers;
 
+// import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,14 +20,19 @@ import za.ac.tut.group.lms.services.LecturerService;
 public class LecturerController {
     @Autowired
     private final LecturerService lecturerService;
+    // @Autowired
+    // private final CourseModuleService courseModuleService;
 
     public LecturerController(LecturerService lecturerService) {
         this.lecturerService = lecturerService;
+        // this.courseModuleService = courseModuleService;
     }
 
     @GetMapping("/signup")
     public String showSignUpForm(Model model){
         model.addAttribute("lecturer",new Lecturer());  
+        model.addAttribute("",new Lecturer());  
+
         System.out.println("gg");      
         return "signup_lecturer.html";
     }
@@ -37,15 +44,20 @@ public class LecturerController {
 
     @PostMapping("/addlecturer")
     public String addNewStudent(@ModelAttribute Lecturer lecturer){
-        lecturerService.addLecturer(lecturer);;
+        lecturerService.addLecturer(lecturer);
 
         return "confirmLec";
     }   
 
     @PostMapping("/signin")
-    public String submitForm(@ModelAttribute Lecturer lecturer) {
+    public String submitForm(@ModelAttribute Lecturer lecturer, Model model) {
         lecturerService.authorizeLecturerAccess(lecturer);
+<<<<<<< HEAD
+        // List<CourseModule> docs = courseModuleService.getAllCourses();
+        // model.addAttribute("docs", docs);
+=======
         
+>>>>>>> df37311b2f103485af84de81c261612305097a49
         return "lecturerDash";
     }
     

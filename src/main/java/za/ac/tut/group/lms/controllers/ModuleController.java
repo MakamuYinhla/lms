@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import za.ac.tut.group.lms.models.CourseModule;
-import za.ac.tut.group.lms.services.CourseService;
 import za.ac.tut.group.lms.services.ModuleService;
 
 @RestController

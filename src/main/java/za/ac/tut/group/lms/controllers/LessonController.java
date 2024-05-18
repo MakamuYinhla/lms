@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import za.ac.tut.group.lms.models.Lesson;
 import za.ac.tut.group.lms.services.LessonService;
-import za.ac.tut.group.lms.services.ModuleService;
+// import za.ac.tut.group.lms.services.ModuleService;
 
 @RestController
 @RequestMapping(path = "/lessons")

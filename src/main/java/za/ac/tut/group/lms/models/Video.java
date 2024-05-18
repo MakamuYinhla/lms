@@ -5,49 +5,54 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
 
 @Entity
 @Table(name = "videos")
 public class Video {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long videoID;
-    // @OneToMany(cascade = CascadeType.ALL)
-    //@Column
-    //private Long lessonID;
+
     @Column
     private String videoName;
+
     @Column
     private String videoTitle;
-    @Column
-    private String videoUrl;
+
+    @Lob
+    @Column(nullable = false)
+    private byte[] videoData;
+
     @Column
     private Double videoDuration;
+
     @Column
-    private String videoDescriotion;
+    private String videoDescription;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "lesson_id")
     private Lesson lessonID;
 
-    public Video(Long videoID, Lesson lessonID, String videoName, String videoTitle, String videoUrl,
-            Double videoDuration, String videoDescriotion) {
+    public Video(Long videoID, Lesson lessonID, String videoName, String videoTitle, byte[] videoData, Double videoDuration, String videoDescription) {
         this.videoID = videoID;
         this.lessonID = lessonID;
         this.videoName = videoName;
         this.videoTitle = videoTitle;
-        this.videoUrl = videoUrl;
+        this.videoData = videoData;
         this.videoDuration = videoDuration;
-        this.videoDescriotion = videoDescriotion;
+        this.videoDescription = videoDescription;
     }
 
-    public Video() {
-    }
+    public Video() {}
+
+    // Getters and setters
 
     public Long getVideoID() {
         return videoID;
@@ -81,12 +86,12 @@ public class Video {
         this.videoTitle = videoTitle;
     }
 
-    public String getVideoUrl() {
-        return videoUrl;
+    public byte[] getVideoData() {
+        return videoData;
     }
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
+    public void setVideoData(byte[] videoData) {
+        this.videoData = videoData;
     }
 
     public Double getVideoDuration() {
@@ -97,12 +102,11 @@ public class Video {
         this.videoDuration = videoDuration;
     }
 
-    public String getVideoDescriotion() {
-        return videoDescriotion;
+    public String getVideoDescription() {
+        return videoDescription;
     }
 
-    public void setVideoDescriotion(String videoDescriotion) {
-        this.videoDescriotion = videoDescriotion;
+    public void setVideoDescription(String videoDescription) {
+        this.videoDescription = videoDescription;
     }
-
 }
