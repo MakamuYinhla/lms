@@ -60,62 +60,172 @@
         var documentInput = document.getElementById("document");
         var videoInput = document.getElementById("video");
 
-        if (documentInput.files.length === 0) {
-          alert("Please upload a document.");
-          return false;
+<head>
+    <title>Lecturer Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="WebUni Education Template">
+    <meta name="keywords" content="webuni, education, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="shortcut icon"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/bootstrap.min1.css"/>
+    <link rel="stylesheet" href="/fonts/font-awesome.css"/>
+    <link rel="stylesheet" href="/css/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced.css"/>
+    <style>
+        .backdrop {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            position: absolute;
+            display: block;
+            z-index: 10;
+            visibility: hidden;
         }
 
-        if (videoInput.files.length === 0) {
-          alert("Please upload a video.");
-          return false;
+        .backdrop-transition {
+            transition-duration: .2s;
+            transition-timing-function: cubic-bezier(.25,.8,.25,1);
+            transition-property: visibility;
         }
 
-        return true;
-      }
+        .backdrop-dark {
+            background-color: rgba(0,0,0,.8);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="m-5">
+        <div id="backdrop" class="backdrop backdrop-transition backdrop-dark">
+            <div class="text-center w-100" style="position: absolute;top: 50%;">
+                <div class="bg-light border rounded border-success shadow-lg m-auto" style="width: 150px;height: 150px;">
+                    <i class="fa fa-upload d-block p-4" style="font-size: 50px;"></i>
+                    <span>Drop file to attach</span>
+                </div>
+            </div>
+        </div>
+        <div class="bg-light border rounded border-light pt-1 jumbotron py-5 px-4">
+            <div class="alert alert-success invisible mt-5" role="alert">
+                <span id="notify"></span>
+            </div>
+            <h1>File Drop<br></h1>
+            <p>
+                <label class="form-label" for="form-files">
+                    <a class="btn btn-secondary btn-sm" role="button">Choose Files</a>
+                </label>
+                &nbsp;or drag the files to anywhere on this page.<br>
+            </p>
+            <p id="filecount"><br></p>
+            <div id="list"></div>
+            <p>
+                <label class="form-label" for="form-videos">
+                    <a class="btn btn-secondary btn-sm" role="button">Choose Videos</a>
+                </label>
+                &nbsp;or drag the videos to anywhere on this page.<br>
+            </p>
+            <p id="videocount"><br></p>
+            <div id="video-list"></div>
+            <form id="file-form" method="post">
+                <input class="form-control invisible" type="file" id="form-files" name="files" multiple>
+                <input class="form-control invisible" type="file" id="form-videos" name="videos" multiple accept="video/mp4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="moduleDropdown" data-bs-toggle="dropdown" aria-expanded="false" required>
+                        Select Module
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
+                        <li><a class="dropdown-item" href="#" id="module1">PPB115D</a></li>
+                        <li><a class="dropdown-item" href="#" id="module2">PPA115D</a></li>
+                        <li><a class="dropdown-item" href="#" id="module3">MOB316D</a></li>
+                        <!-- Add more modules as needed -->
+                    </ul>
+                </div>
+                <input type="hidden" id="selected-module" name="selected-module">
+                <button class="btn btn-outline-primary d-block w-100" type="submit">Submit</button>
+                <button class="btn btn-danger mt-5" type="reset" onclick="clearFiles()">Reset</button>
+            </form>
+        </div>
+    </div>
+    <script src="/js/bootstrap.min1.js"></script>
+    <script src="/js/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced-drop.js"></script>
+    <script>
+        document.getElementById('file-form').addEventListener('submit', function(event) {
+            const files = document.getElementById('form-files').files;
+            const videos = document.getElementById('form-videos').files;
+            const selectedModule = document.getElementById('selected-module').value;
+
+            if (files.length > 5) {
+                event.preventDefault();
+                alert('You can upload a maximum of 5 files.');
+                return;
+            }
+
+            if (videos.length < 1) {
+                event.preventDefault();
+                alert('You must upload at least one MP4 video.');
+                return;
+            }
+
+            if (videos.length > 2) {
+                event.preventDefault();
+                alert('You can upload a maximum of 2 MP4 videos.');
+                return;
+            }
+
+            // Set the selected module value
+            document.getElementById('selected-module').value = selectedModule;
+        });
+
+        function clearFiles() {
+            document.getElementById('form-files').value = '';
+            document.getElementById('form-videos').value = '';
+            document.getElementById('filecount').innerText = '';
+            document.getElementById('videocount').innerText = '';
+            document.getElementById('list').innerHTML = '';
+            document.getElementById('video-list').innerHTML = '';
+        }
+
+        document.getElementById('form-files').addEventListener('change', function() {
+            const files = this.files;
+            let fileNames = '';
+
+            if (files.length > 5) {
+                alert('You can upload a maximum of 5 files.');
+                this.value = '';
+                return;
+            }
+
+            for (let i = 0; i < files.length; i++) {
+                fileNames += '<p>' + files[i].name + '</p>';
+            }
+
+            document.getElementById('filecount').innerText = files.length + ' file(s) selected';
+            document.getElementById('list').innerHTML = fileNames;
+        });
+
+        document.getElementById('form-videos').addEventListener('change', function() {
+            const videos = this.files;
+            let videoNames = '';
+
+            if (videos.length > 2) {
+                alert('You can upload a maximum of 2 MP4 videos.');
+                this.value = '';
+                return;
+            }
+
+            for (let i = 0; i < videos.length; i++) {
+                videoNames += '<p>' + videos[i].name + '</p>';
+            }
+
+            document.getElementById('videocount').innerText = videos.length + ' video(s) selected';
+            document.getElementById('video-list').innerHTML = videoNames;
+        });
     </script>
-  </head>
-  <body>
-    <h1>Upload Document and Video</h1>
-    <form
-      action="#"
-      th:action="@{/upload}"
-      th:object="${uploadForm}"
-      method="post"
-      enctype="multipart/form-data"
-      onsubmit="return validateForm()"
-    >
-      <div>
-        <label for="document">Upload Document:</label>
-        <input
-          th:field="*{document.documentContent}"
-          type="file"
-          id="document"
-          name="document"
-          accept=".pdf,.doc,.docx,.txt"
-          required
-        />
-      </div>
-      <div>
-        <label for="video">Upload Video:</label>
-        <input
-          th:field="*{video.videoData}"
-          type="file"
-          id="video"
-          name="video"
-          accept="video/*"
-          required
-        />
-      </div>
-      <!-- <div>
-        <tr th:each="CourseModule : ${docs}">
-          <td th:text="${CourseModule.moduleId}"></td>
-          <td th:text="${CourseModule.moduleName}"></td>
-          <td th:text="${CourseModule.moduleDescription}"></td>
-        </tr> -->
-      </div>
-      <div>
-        <button type="submit">Upload</button>
-      </div>
-    </form>
-  </body>
+</body>
+
 </html>

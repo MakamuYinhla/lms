@@ -52,8 +52,12 @@ public class LecturerController {
     @PostMapping("/signin")
     public String submitForm(@ModelAttribute Lecturer lecturer, Model model) {
         lecturerService.authorizeLecturerAccess(lecturer);
+<<<<<<< HEAD
         // List<CourseModule> docs = courseModuleService.getAllCourses();
         // model.addAttribute("docs", docs);
+=======
+        
+>>>>>>> df37311b2f103485af84de81c261612305097a49
         return "lecturerDash";
     }
     
