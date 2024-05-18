@@ -47,11 +47,12 @@ public class ModuleController {
          */
         System.out.println("Size is : " + lessons.size());
         try {
-            for (Lesson less : lessons) {
-                System.out.println(less.getModuleName() + "u" + module);
-                if (!(less.getModuleName().trim().equalsIgnoreCase(module.trim()))) {
-                    lessons.remove(less);
+            for (int i = 0; i < lessons.size(); i++) {
+                System.out.println(lessons.get(i).getModuleName() + "u" + module);
+                if (!(lessons.get(i).getModuleName().trim().equalsIgnoreCase(module.trim()))) {
+                    lessons.remove(lessons.get(i));
                     System.out.println("0");
+                    i--;
                 }
             }
         } catch (Exception e) {

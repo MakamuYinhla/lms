@@ -18,7 +18,7 @@ public class VideoService {
         return videoRepository.findAll();
     }
 
-    public void addVideo(Video vid){
+    public void addVideo(Video vid) {
         videoRepository.save(vid);
     }
 
