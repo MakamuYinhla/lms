@@ -23,4 +23,5 @@ public class StudentService {
     public boolean authorizeStudentAccess(Student student){
         return studentRepository.authorizeStudent(student);
     }
+
 }
