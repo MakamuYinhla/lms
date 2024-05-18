@@ -1,16 +1,6 @@
 package za.ac.tut.group.lms.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "videos")
@@ -18,39 +8,40 @@ public class Video {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "videoid")
     private Long videoID;
 
-    @Column
+    @Column(name = "video_name")
     private String videoName;
 
-    @Column
+    @Column(name = "video_title")
     private String videoTitle;
 
     @Lob
-    @Column(nullable = false)
+    @Column(name = "video_data", nullable = false)
     private byte[] videoData;
 
-    @Column
+    @Column(name = "video_duration")
     private Double videoDuration;
 
-    @Column
+    @Column(name = "video_description")
     private String videoDescription;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "lesson_id")
-    private Lesson lessonID;
+    private Lesson lesson;
 
-    public Video(Long videoID, Lesson lessonID, String videoName, String videoTitle, byte[] videoData, Double videoDuration, String videoDescription) {
+    public Video() {}
+
+    public Video(Long videoID, Lesson lesson, String videoName, String videoTitle, byte[] videoData, Double videoDuration, String videoDescription) {
         this.videoID = videoID;
-        this.lessonID = lessonID;
+        this.lesson = lesson;
         this.videoName = videoName;
         this.videoTitle = videoTitle;
         this.videoData = videoData;
         this.videoDuration = videoDuration;
         this.videoDescription = videoDescription;
     }
-
-    public Video() {}
 
     // Getters and setters
 
@@ -62,12 +53,12 @@ public class Video {
         this.videoID = videoID;
     }
 
-    public Lesson getLessonID() {
-        return lessonID;
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLessonID(Lesson lessonID) {
-        this.lessonID = lessonID;
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 
     public String getVideoName() {

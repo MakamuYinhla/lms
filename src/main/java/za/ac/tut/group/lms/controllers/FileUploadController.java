@@ -1,13 +1,13 @@
 package za.ac.tut.group.lms.controllers;
-import java.io.IOException;
 
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import za.ac.tut.group.lms.models.Document;
 import za.ac.tut.group.lms.models.Video;
 import za.ac.tut.group.lms.services.DocumentService;
@@ -28,13 +28,19 @@ public class FileUploadController {
     }
 
     @PostMapping("/upload")
-    public String handleFileUpload(MultipartFile document, MultipartFile video, Model model) {
+    public String handleFileUpload(@RequestParam("document") MultipartFile[] documents,
+                                   @RequestParam("videos") MultipartFile[] videos,
+                                   Model model) {
         try {
-            if (!document.isEmpty()) {
-                saveDocument(document);
+            for (MultipartFile document : documents) {
+                if (!document.isEmpty()) {
+                    saveDocument(document);
+                }
             }
-            if (!video.isEmpty()) {
-                saveVideo(video);
+            for (MultipartFile video : videos) {
+                if (!video.isEmpty()) {
+                    saveVideo(video);
+                }
             }
             model.addAttribute("message", "Files uploaded successfully");
         } catch (IOException e) {
@@ -46,7 +52,6 @@ public class FileUploadController {
     private void saveDocument(MultipartFile file) throws IOException {
         Document document = new Document();
         document.setDocumentTitle(file.getOriginalFilename());
-        // document.setFileType(file.getContentType());
         document.setDocumentContent(file.getBytes());
         documentService.addDocument(document);
     }
@@ -54,7 +59,6 @@ public class FileUploadController {
     private void saveVideo(MultipartFile file) throws IOException {
         Video video = new Video();
         video.setVideoName(file.getOriginalFilename());
-        // video.setFileType(file.getContentType());
         video.setVideoData(file.getBytes());
         videoService.addVideo(video);
     }

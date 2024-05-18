@@ -1,78 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upload Documents or Videos</title>
-    <!-- <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      h1 {
-        text-align: center;
-        color: #333;
-      }
-      form {
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        width: 100%;
-        max-width: 500px;
-      }
-      div {
-        margin-bottom: 15px;
-      }
-      label {
-        display: block;
-        margin-bottom: 5px;
-        color: #555;
-      }
-      input[type="file"] {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-      }
-      button {
-        width: 100%;
-        padding: 10px;
-        background-color: #007bff;
-        border: none;
-        border-radius: 4px;
-        color: #fff;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #0056b3;
-      } -->
-    </style>
-    <script>
-      function validateForm() {
-        var documentInput = document.getElementById("document");
-        var videoInput = document.getElementById("video");}
-        </script>
-<head>
-    <title>Lecturer Dashboard</title>
-    <meta charset="UTF-8">
-    <meta name="description" content="WebUni Education Template">
-    <meta name="keywords" content="webuni, education, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
-    <link href="/img/favicon.ico" rel="shortcut icon"/>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/bootstrap.min1.css"/>
     <link rel="stylesheet" href="/fonts/font-awesome.css"/>
     <link rel="stylesheet" href="/css/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced.css"/>
@@ -87,19 +18,16 @@
             z-index: 10;
             visibility: hidden;
         }
-
         .backdrop-transition {
             transition-duration: .2s;
             transition-timing-function: cubic-bezier(.25,.8,.25,1);
             transition-property: visibility;
         }
-
         .backdrop-dark {
             background-color: rgba(0,0,0,.8);
         }
     </style>
 </head>
-
 <body>
     <div class="m-5">
         <div id="backdrop" class="backdrop backdrop-transition backdrop-dark">
@@ -131,37 +59,23 @@
             </p>
             <p id="videocount"><br></p>
             <div id="video-list"></div>
-            <form id="file-form" action="#" th:action="@{/upload}" method="post">
-              <input class="form-control invisible"  type="file" id="form-files" name="document" multiple>
-              <input class="form-control invisible"  type="file" id="form-videos" name="videos" multiple accept="video/mp4">
-              <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="moduleDropdown" data-bs-toggle="dropdown" aria-expanded="false" required>
-                      Select Module
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
-                      <li><button class="dropdown-item" type="button" onclick="setSelectedModule('PPB115D')">PPB115D</button></li>
-                      <li><button class="dropdown-item" type="button" onclick="setSelectedModule('PPA115D')">PPA115D</button></li>
-                      <li><button class="dropdown-item" type="button" onclick="setSelectedModule('MOB316D')">MOB316D</button></li>
-                      <!-- Add more modules as needed -->
-                  </ul>
-              </div>
-              <input type="hidden" id="selected-module" name="selected-module">
-              <button class="btn btn-outline-primary d-block w-100" type="submit">Submit</button>
-              <button class="btn btn-danger mt-5" type="reset" onclick="clearFiles()">Reset</button>
-          </form>
-          
-          <script>
-              function setSelectedModule(module) {
-                  document.getElementById("selected-module").value = module;
-                  document.getElementById("moduleDropdown").innerText = module;
-              }
-          
-              function clearFiles() {
-                  document.getElementById("form-files").value = "";
-                  document.getElementById("form-videos").value = "";
-              }
-          </script>
-          
+            <form id="file-form" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+                <input class="form-control invisible" type="file" id="form-files" name="document" multiple>
+                <input class="form-control invisible" type="file" id="form-videos" name="videos" multiple accept="video/mp4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="moduleDropdown" data-bs-toggle="dropdown" aria-expanded="false" required>
+                        Select Module
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
+                        <li><button class="dropdown-item" type="button" onclick="setSelectedModule('PPB115D')">PPB115D</button></li>
+                        <li><button class="dropdown-item" type="button" onclick="setSelectedModule('PPA115D')">PPA115D</button></li>
+                        <li><button class="dropdown-item" type="button" onclick="setSelectedModule('MOB316D')">MOB316D</button></li>
+                    </ul>
+                </div>
+                <input type="hidden" id="selected-module" name="selected-module">
+                <button class="btn btn-outline-primary d-block w-100" type="submit">Submit</button>
+                <button class="btn btn-danger mt-5" type="reset" onclick="clearFiles()">Reset</button>
+            </form>
         </div>
     </div>
     <script src="/js/bootstrap.min1.js"></script>
@@ -240,5 +154,4 @@
         });
     </script>
 </body>
-
 </html>
