@@ -30,9 +30,7 @@ public class LecturerController {
 
     @GetMapping("/signup")
     public String showSignUpForm(Model model){
-        model.addAttribute("lecturer",new Lecturer());  
-        model.addAttribute("",new Lecturer());  
-
+        model.addAttribute("lecturer",new Lecturer()); 
         System.out.println("gg");      
         return "signup_lecturer.html";
     }
@@ -50,7 +48,7 @@ public class LecturerController {
     }   
 
     @PostMapping("/signin")
-    public String submitForm(@ModelAttribute Lecturer lecturer, Model model) {
+    public String submitForm(@ModelAttribute Lecturer lecturer) {
         lecturerService.authorizeLecturerAccess(lecturer);
         // List<CourseModule> docs = courseModuleService.getAllCourses();
         // model.addAttribute("docs", docs);

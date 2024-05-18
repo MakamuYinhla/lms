@@ -58,8 +58,8 @@
     <script>
       function validateForm() {
         var documentInput = document.getElementById("document");
-        var videoInput = document.getElementById("video");
-
+        var videoInput = document.getElementById("video");}
+        </script>
 <head>
     <title>Lecturer Dashboard</title>
     <meta charset="UTF-8">
@@ -131,24 +131,37 @@
             </p>
             <p id="videocount"><br></p>
             <div id="video-list"></div>
-            <form id="file-form" method="post">
-                <input class="form-control invisible" type="file" id="form-files" name="files" multiple>
-                <input class="form-control invisible" type="file" id="form-videos" name="videos" multiple accept="video/mp4">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="moduleDropdown" data-bs-toggle="dropdown" aria-expanded="false" required>
-                        Select Module
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
-                        <li><a class="dropdown-item" href="#" id="module1">PPB115D</a></li>
-                        <li><a class="dropdown-item" href="#" id="module2">PPA115D</a></li>
-                        <li><a class="dropdown-item" href="#" id="module3">MOB316D</a></li>
-                        <!-- Add more modules as needed -->
-                    </ul>
-                </div>
-                <input type="hidden" id="selected-module" name="selected-module">
-                <button class="btn btn-outline-primary d-block w-100" type="submit">Submit</button>
-                <button class="btn btn-danger mt-5" type="reset" onclick="clearFiles()">Reset</button>
-            </form>
+            <form id="file-form" action="#" th:action="@{/upload}" method="post">
+              <input class="form-control invisible"  type="file" id="form-files" name="document" multiple>
+              <input class="form-control invisible"  type="file" id="form-videos" name="videos" multiple accept="video/mp4">
+              <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="moduleDropdown" data-bs-toggle="dropdown" aria-expanded="false" required>
+                      Select Module
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
+                      <li><button class="dropdown-item" type="button" onclick="setSelectedModule('PPB115D')">PPB115D</button></li>
+                      <li><button class="dropdown-item" type="button" onclick="setSelectedModule('PPA115D')">PPA115D</button></li>
+                      <li><button class="dropdown-item" type="button" onclick="setSelectedModule('MOB316D')">MOB316D</button></li>
+                      <!-- Add more modules as needed -->
+                  </ul>
+              </div>
+              <input type="hidden" id="selected-module" name="selected-module">
+              <button class="btn btn-outline-primary d-block w-100" type="submit">Submit</button>
+              <button class="btn btn-danger mt-5" type="reset" onclick="clearFiles()">Reset</button>
+          </form>
+          
+          <script>
+              function setSelectedModule(module) {
+                  document.getElementById("selected-module").value = module;
+                  document.getElementById("moduleDropdown").innerText = module;
+              }
+          
+              function clearFiles() {
+                  document.getElementById("form-files").value = "";
+                  document.getElementById("form-videos").value = "";
+              }
+          </script>
+          
         </div>
     </div>
     <script src="/js/bootstrap.min1.js"></script>
