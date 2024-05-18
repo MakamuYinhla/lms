@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "modules")
+@Table(name = "CourseModule")
 public class CourseModule {
     @Id
     @GeneratedValue

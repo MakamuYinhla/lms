@@ -1,19 +1,9 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lecturer Dashboard</title>
-    <meta charset="UTF-8">
-    <meta name="description" content="WebUni Education Template">
-    <meta name="keywords" content="webuni, education, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
-    <link href="/img/favicon.ico" rel="shortcut icon"/>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-    <!-- Stylesheets -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Documents or Videos</title>
     <link rel="stylesheet" href="/css/bootstrap.min1.css"/>
     <link rel="stylesheet" href="/fonts/font-awesome.css"/>
     <link rel="stylesheet" href="/css/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced.css"/>
@@ -28,19 +18,16 @@
             z-index: 10;
             visibility: hidden;
         }
-
         .backdrop-transition {
             transition-duration: .2s;
             transition-timing-function: cubic-bezier(.25,.8,.25,1);
             transition-property: visibility;
         }
-
         .backdrop-dark {
             background-color: rgba(0,0,0,.8);
         }
     </style>
 </head>
-
 <body>
     <div class="m-5">
         <div id="backdrop" class="backdrop backdrop-transition backdrop-dark">
@@ -64,8 +51,28 @@
             </p>
             <p id="filecount"><br></p>
             <div id="list"></div>
-            <form id="file-form" method="post">
-                <input class="form-control invisible" type="file" id="form-files" name="files" multiple>
+            <p>
+                <label class="form-label" for="form-videos">
+                    <a class="btn btn-secondary btn-sm" role="button">Choose Videos</a>
+                </label>
+                &nbsp;or drag the videos to anywhere on this page.<br>
+            </p>
+            <p id="videocount"><br></p>
+            <div id="video-list"></div>
+            <form id="file-form" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+                <input class="form-control invisible" type="file" id="form-files" name="document" multiple>
+                <input class="form-control invisible" type="file" id="form-videos" name="videos" multiple accept="video/mp4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="moduleDropdown" data-bs-toggle="dropdown" aria-expanded="false" required>
+                        Select Module
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
+                        <li><button class="dropdown-item" type="button" onclick="setSelectedModule('PPB115D')">PPB115D</button></li>
+                        <li><button class="dropdown-item" type="button" onclick="setSelectedModule('PPA115D')">PPA115D</button></li>
+                        <li><button class="dropdown-item" type="button" onclick="setSelectedModule('MOB316D')">MOB316D</button></li>
+                    </ul>
+                </div>
+                <input type="hidden" id="selected-module" name="selected-module">
                 <button class="btn btn-outline-primary d-block w-100" type="submit">Submit</button>
                 <button class="btn btn-danger mt-5" type="reset" onclick="clearFiles()">Reset</button>
             </form>
@@ -76,7 +83,8 @@
     <script>
         document.getElementById('file-form').addEventListener('submit', function(event) {
             const files = document.getElementById('form-files').files;
-            let mp4Count = 0;
+            const videos = document.getElementById('form-videos').files;
+            const selectedModule = document.getElementById('selected-module').value;
 
             if (files.length > 5) {
                 event.preventDefault();
@@ -84,65 +92,66 @@
                 return;
             }
 
-            for (let i = 0; i < files.length; i++) {
-                if (files[i].type === 'video/mp4') {
-                    mp4Count++;
-                }
-            }
-
-            if (mp4Count < 1) {
+            if (videos.length < 1) {
                 event.preventDefault();
-                alert('You must upload at least one MP4 file.');
+                alert('You must upload at least one MP4 video.');
                 return;
             }
 
-            if (mp4Count > 2) {
+            if (videos.length > 2) {
                 event.preventDefault();
-                alert('You can upload a maximum of 2 MP4 files.');
+                alert('You can upload a maximum of 2 MP4 videos.');
                 return;
             }
+
+            // Set the selected module value
+            document.getElementById('selected-module').value = selectedModule;
         });
 
         function clearFiles() {
             document.getElementById('form-files').value = '';
+            document.getElementById('form-videos').value = '';
             document.getElementById('filecount').innerText = '';
+            document.getElementById('videocount').innerText = '';
             document.getElementById('list').innerHTML = '';
+            document.getElementById('video-list').innerHTML = '';
         }
 
         document.getElementById('form-files').addEventListener('change', function() {
             const files = this.files;
             let fileNames = '';
 
-            if (files.length > 7) {
-                alert('You can upload a maximum of 7 files.');
+            if (files.length > 5) {
+                alert('You can upload a maximum of 5 files.');
                 this.value = '';
                 return;
             }
 
-            let mp4Count = 0;
             for (let i = 0; i < files.length; i++) {
                 fileNames += '<p>' + files[i].name + '</p>';
-                if (files[i].type === 'video/mp4') {
-                    mp4Count++;
-                }
-            }
-
-            if (mp4Count < 1) {
-                alert('You must upload at least one MP4 file.');
-                this.value = '';
-                return;
-            }
-
-            if (mp4Count > 2) {
-                alert('You can upload a maximum of 2 MP4 files.');
-                this.value = '';
-                return;
             }
 
             document.getElementById('filecount').innerText = files.length + ' file(s) selected';
             document.getElementById('list').innerHTML = fileNames;
         });
+
+        document.getElementById('form-videos').addEventListener('change', function() {
+            const videos = this.files;
+            let videoNames = '';
+
+            if (videos.length > 2) {
+                alert('You can upload a maximum of 2 MP4 videos.');
+                this.value = '';
+                return;
+            }
+
+            for (let i = 0; i < videos.length; i++) {
+                videoNames += '<p>' + videos[i].name + '</p>';
+            }
+
+            document.getElementById('videocount').innerText = videos.length + ' video(s) selected';
+            document.getElementById('video-list').innerHTML = videoNames;
+        });
     </script>
 </body>
-
 </html>
