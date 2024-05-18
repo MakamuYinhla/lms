@@ -46,7 +46,7 @@ public class LecturerController {
     public String submitForm(@ModelAttribute Lecturer lecturer) {
         lecturerService.authorizeLecturerAccess(lecturer);
         
-        return "lect_dashboard";
+        return "lecturerDash";
     }
     
 }
