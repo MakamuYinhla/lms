@@ -64,8 +64,29 @@
             </p>
             <p id="filecount"><br></p>
             <div id="list"></div>
+            <p>
+                <label class="form-label" for="form-videos">
+                    <a class="btn btn-secondary btn-sm" role="button">Choose Videos</a>
+                </label>
+                &nbsp;or drag the videos to anywhere on this page.<br>
+            </p>
+            <p id="videocount"><br></p>
+            <div id="video-list"></div>
             <form id="file-form" method="post">
                 <input class="form-control invisible" type="file" id="form-files" name="files" multiple>
+                <input class="form-control invisible" type="file" id="form-videos" name="videos" multiple accept="video/mp4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="moduleDropdown" data-bs-toggle="dropdown" aria-expanded="false" required>
+                        Select Module
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
+                        <li><a class="dropdown-item" href="#" id="module1">PPB115D</a></li>
+                        <li><a class="dropdown-item" href="#" id="module2">PPA115D</a></li>
+                        <li><a class="dropdown-item" href="#" id="module3">MOB316D</a></li>
+                        <!-- Add more modules as needed -->
+                    </ul>
+                </div>
+                <input type="hidden" id="selected-module" name="selected-module">
                 <button class="btn btn-outline-primary d-block w-100" type="submit">Submit</button>
                 <button class="btn btn-danger mt-5" type="reset" onclick="clearFiles()">Reset</button>
             </form>
@@ -76,7 +97,8 @@
     <script>
         document.getElementById('file-form').addEventListener('submit', function(event) {
             const files = document.getElementById('form-files').files;
-            let mp4Count = 0;
+            const videos = document.getElementById('form-videos').files;
+            const selectedModule = document.getElementById('selected-module').value;
 
             if (files.length > 5) {
                 event.preventDefault();
@@ -84,63 +106,65 @@
                 return;
             }
 
-            for (let i = 0; i < files.length; i++) {
-                if (files[i].type === 'video/mp4') {
-                    mp4Count++;
-                }
-            }
-
-            if (mp4Count < 1) {
+            if (videos.length < 1) {
                 event.preventDefault();
-                alert('You must upload at least one MP4 file.');
+                alert('You must upload at least one MP4 video.');
                 return;
             }
 
-            if (mp4Count > 2) {
+            if (videos.length > 2) {
                 event.preventDefault();
-                alert('You can upload a maximum of 2 MP4 files.');
+                alert('You can upload a maximum of 2 MP4 videos.');
                 return;
             }
+
+            // Set the selected module value
+            document.getElementById('selected-module').value = selectedModule;
         });
 
         function clearFiles() {
             document.getElementById('form-files').value = '';
+            document.getElementById('form-videos').value = '';
             document.getElementById('filecount').innerText = '';
+            document.getElementById('videocount').innerText = '';
             document.getElementById('list').innerHTML = '';
+            document.getElementById('video-list').innerHTML = '';
         }
 
         document.getElementById('form-files').addEventListener('change', function() {
             const files = this.files;
             let fileNames = '';
 
-            if (files.length > 7) {
-                alert('You can upload a maximum of 7 files.');
+            if (files.length > 5) {
+                alert('You can upload a maximum of 5 files.');
                 this.value = '';
                 return;
             }
 
-            let mp4Count = 0;
             for (let i = 0; i < files.length; i++) {
                 fileNames += '<p>' + files[i].name + '</p>';
-                if (files[i].type === 'video/mp4') {
-                    mp4Count++;
-                }
-            }
-
-            if (mp4Count < 1) {
-                alert('You must upload at least one MP4 file.');
-                this.value = '';
-                return;
-            }
-
-            if (mp4Count > 2) {
-                alert('You can upload a maximum of 2 MP4 files.');
-                this.value = '';
-                return;
             }
 
             document.getElementById('filecount').innerText = files.length + ' file(s) selected';
             document.getElementById('list').innerHTML = fileNames;
+        });
+
+        document.getElementById('form-videos').addEventListener('change', function() {
+            const videos = this.files;
+            let videoNames = '';
+
+            if (videos.length > 2) {
+                alert('You can upload a maximum of 2 MP4 videos.');
+                this.value = '';
+                return;
+            }
+
+            for (let i = 0; i < videos.length; i++) {
+                videoNames += '<p>' + videos[i].name + '</p>';
+            }
+
+            document.getElementById('videocount').innerText = videos.length + ' video(s) selected';
+            document.getElementById('video-list').innerHTML = videoNames;
         });
     </script>
 </body>
